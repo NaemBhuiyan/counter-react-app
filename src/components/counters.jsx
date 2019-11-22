@@ -35,7 +35,7 @@ class Counters extends Component {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Your Item Name Here and place it"
+                      placeholder="Your Item Name EX:Hard disk"
                       aria-label="Recipient's username"
                       aria-describedby="button-addon2"
                       value={this.state.title}
