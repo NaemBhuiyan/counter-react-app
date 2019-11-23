@@ -14,7 +14,14 @@ class Counter extends Component {
 
     return (
       <React.Fragment>
-        <h4 className="bg-200">Item #{title} </h4>
+        <div className="d-flex justify-content-between align-item-center border-bottom pb-3 mb-5">
+          <h4 className="d-inline-block">Item #{title} </h4>
+          <button
+            onClick={() => onDelete(index)}
+            className="btn btn-danger btn-sm">
+            Delete
+          </button>
+        </div>
         <span className={this.getClasses()}>{this.formateCount()}</span>
         <button
           onClick={() => onDecriment(counter)}
@@ -25,12 +32,6 @@ class Counter extends Component {
           onClick={() => onIncrement(counter)}
           className="btn btn-info btn-sm">
           Increament
-        </button>
-
-        <button
-          onClick={() => onDelete(index)}
-          className="btn btn-danger btn-sm m-2">
-          Delete
         </button>
       </React.Fragment>
     );
