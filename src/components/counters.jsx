@@ -1,25 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import Counter from "./counter";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 class Counters extends Component {
   state = {
     title: ""
   };
+
+  static contextType = ThemeContext;
+
   render() {
     const {
       onReset,
       onDelete,
       onIncrement,
-      onDecriment,
       counters,
+      onDecriment,
       onAddItem
     } = this.props;
 
-    console.log(this.props);
-
+    const { isLightTheme, dark } = this.context;
+    const theme = isLightTheme ? dark : "";
     return (
       <React.Fragment>
-        <div className="card my-3 shadow-lg">
+        <div
+          className="card my-3 shadow-lg"
+          style={{ background: theme.ui, color: theme.syntax }}>
           <div className="card-body">
             <div className="row">
               <div className="col-5">
@@ -61,17 +67,15 @@ class Counters extends Component {
                 </button>
               </div>
             </div>
-
-            {/* <button onClick={onAddItem} className="btn btn-info m-2">
-              Add item
-            </button> */}
           </div>
         </div>
 
         <div className="row">
           {counters.map((counter, index) => (
             <div className="col-lg-4 mb-3">
-              <div className="card shadow bg-light">
+              <div
+                className="card shadow"
+                style={{ background: theme.ui, color: theme.syntax }}>
                 <div className="card-body">
                   <Counter
                     key={index}

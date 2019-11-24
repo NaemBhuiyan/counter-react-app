@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import Counters from "./components/counters";
 import Navbar from "./components/navbar";
+import ThemeContextProvider from "./contexts/ThemeContext";
 
-class app extends Component {
+class App extends Component {
   state = {
     counters: [
       { title: 1, value: 0 },
@@ -67,11 +68,11 @@ class app extends Component {
   };
   render() {
     return (
-      <React.Fragment>
-        <Navbar
-          totalCounter={this.state.counters.filter(c => c.value > 0).length}
-        />
+      <ThemeContextProvider>
         <main className="container">
+          <Navbar
+            totalCounter={this.state.counters.filter(c => c.value > 0).length}
+          />
           <Counters
             counters={this.state.counters}
             onReset={this.handleRset}
@@ -81,9 +82,9 @@ class app extends Component {
             onDecriment={this.hanndleDecriment}
           />
         </main>
-      </React.Fragment>
+      </ThemeContextProvider>
     );
   }
 }
 
-export default app;
+export default App;

@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 class Counter extends Component {
+  static contextType = ThemeContext;
   render() {
     const {
       counter,
@@ -10,8 +12,6 @@ class Counter extends Component {
       index,
       title
     } = this.props;
-    console.log("app - counter");
-
     return (
       <React.Fragment>
         <div className="d-flex justify-content-between align-item-center border-bottom pb-3 mb-5">

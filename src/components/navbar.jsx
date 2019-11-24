@@ -1,14 +1,31 @@
 import React from "react";
-const Navbar = ({ totalCounter }) => {
-  console.log("render-Navbar");
+import { ThemeContext } from "../contexts/ThemeContext";
 
+const Navbar = ({ totalCounter }) => {
   return (
-    <nav className="navbar navbar-light bg-light">
-      <a className="navbar-brand mb-0 text-secondary">
-        Your total Elemnet{" "}
-        <span className="badge badge-pill badge-warning">{totalCounter}</span>
-      </a>
-    </nav>
+    <ThemeContext.Consumer>
+      {({ themeToggle, ...rest }) => {
+        const { isLightTheme, dark } = rest;
+        return (
+          <nav
+            className="navbar navbar-light  mt-2"
+            style={{
+              background: isLightTheme ? dark.bg : "#f5f5f5",
+              color: isLightTheme ? dark.syntax : ""
+            }}>
+            <a className="navbar-brand mb-0">
+              Your total Elemnet{" "}
+              <span className="badge badge-pill badge-warning">
+                {totalCounter}
+              </span>
+            </a>
+            <button className="btn btn-primary" onClick={themeToggle}>
+              Theme Toggle
+            </button>
+          </nav>
+        );
+      }}
+    </ThemeContext.Consumer>
   );
 };
 
